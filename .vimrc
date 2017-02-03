@@ -85,10 +85,5 @@ set hlsearch
 vmap <Tab> >
 vmap <S-Tab> <
 
-" 注释插件 手动安装
-" Bundle 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelim = 1
-map <C-l> <plug>NERDCommenterToggle
-
 " 复制粘贴模式
 set pastetoggle=<F10>
