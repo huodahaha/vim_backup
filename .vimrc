@@ -81,3 +81,14 @@ Bundle 'scrooloose/syntastic'
 " 默认搜索高亮
 set hlsearch
 
+" tab / shift+tab 快捷键
+vmap <Tab> >
+vmap <S-Tab> <
+
+" 注释插件 手动安装
+" Bundle 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelim = 1
+map <C-l> <plug>NERDCommenterToggle
+
+" 复制粘贴模式
+set pastetoggle=<F10>
