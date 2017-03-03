@@ -1,89 +1,108 @@
-" 自动安装Bundle
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
-endif
-
-" comment by huodahaha: Bundle start
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
-" following added by huodahaha
-syntax on
-
-set nu!
-
-set ts=4
-set expandtab
-set autoindent
-
-" 注释插件 使用方法 gc
-Plugin 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims = 1
-map <C-l> <plug>NERDCommenterToggle
-
-" 配色
 Plugin 'altercation/vim-colors-solarized'
-syntax enable
-colorscheme solarized
-set background=dark
-
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'git@github.com:terryma/vim-multiple-cursors.git'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'derekwyatt/vim-fswitch'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'dyng/ctrlsf.vim'
+
+
+call vundle#end()
+
+filetype on
+
+" make config effect right away
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+" color theme
+colorscheme solarized
+set background=light
+
 set laststatus=2
+set ruler
+set number
+set cursorline
+set cursorcolumn
+set hlsearch 
 
-" 代码静态检查
-Bundle 'scrooloose/syntastic'
+" nerd comment
+let g:NERDSpaceDelim = 1
+map <C-l> <plug>NERDCommenterToggle
 
-" 默认搜索高亮
-set hlsearch
+" nerdtree
+let g:nerdtree_tabs_open_on_console_startup=1
+map <F2> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = '<'
 
-" tab / shift+tab 快捷键
+set pastetoggle=<F10>
+
+" syntax 
+syntax enable
+syntax on
+let g:cpp_class_scope_highlight = 1
+
+" indent related
+filetype indent on
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+"fold 
+set foldmethod=indent
+set foldmethod=syntax
+set nofoldenable
+
+" cpp/h switch
+nmap <silent> <F3> :FSHere<cr>
+
+"YCM
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>ji :YcmCompleter GoToImplementation
+let g:ycm_key_list_select_completion = ['<UP>', '<Down>']
+let g:ycm_confirm_extra_conf=1
+let g:ycm_goto_buffer_command = 'vertical-split'
+let g:syntastic_error_symbol='W>'
+let g:syntastic_warning_symbol='E>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
+
+" indent
 vmap <Tab> >
 vmap <S-Tab> <
 
-" 复制粘贴模式
-set pastetoggle=<F10>
+" ctrlsf
+let g:ctrlsf_position = 'right'
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_case_sensitive = 'yes'
+let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_winsize = '30%'
+nnoremap <Leader><Leader> :CtrlSF<CR>
+nmap <C-f> <Plug>CtrlSFPrompt
+
+" mouse
+set mouse=a
+
+" 关闭搜索
+nmap <F4> :nohl<CR>
+
+" 回到bash
+map <F5> <C-z>
