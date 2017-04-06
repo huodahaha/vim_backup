@@ -17,11 +17,13 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'dyng/ctrlsf.vim'
-
+Plugin 'git@github.com:ctrlpvim/ctrlp.vim.git'
+Plugin 'git@github.com:easymotion/vim-easymotion.git'
 
 call vundle#end()
 
 filetype on
+filetype plugin on
 
 " make config effect right away
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -95,7 +97,8 @@ let g:ctrlsf_case_sensitive = 'yes'
 let g:ctrlsf_default_root = 'project'
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_winsize = '30%'
-nnoremap <Leader><Leader> :CtrlSF<CR>
+nmap <Leader><Leader> :CtrlSF<CR>
+nmap <Leader>f :CtrlSF<CR>
 nmap <C-f> <Plug>CtrlSFPrompt
 
 " mouse
@@ -106,3 +109,18 @@ nmap <F4> :nohl<CR>
 
 " 回到bash
 map <F5> <C-z>
+
+" easymotion
+map <Leader>w <Plug>(easymotion-w)
+map <Leader>b <Plug>(easymotion-b)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" windows之间快速移动
+"noremap <C-h> <C-w>h
+"noremap <C-j> <C-w>j
+"noremap <C-k> <C-w>k
+"noremap <C-l> <C-w>l
+
+" java 自动补全
+"autocmd FileType java setlocal omnifunc=javacomplete#Complete
