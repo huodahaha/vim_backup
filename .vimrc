@@ -9,7 +9,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'terryma/vim-multiple-cursors.git'
+Plugin 'git@github.com:terryma/vim-multiple-cursors.git'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'derekwyatt/vim-fswitch'
@@ -17,8 +17,10 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'dyng/ctrlsf.vim'
-Plugin 'ctrlpvim/ctrlp.vim.git'
-Plugin 'easymotion/vim-easymotion.git'
+Plugin 'git@github.com:ctrlpvim/ctrlp.vim.git'
+Plugin 'git@github.com:easymotion/vim-easymotion.git'
+Plugin 'rdnetto/YCM-Generator'
+
 
 call vundle#end()
 
@@ -37,7 +39,7 @@ set ruler
 set number
 set cursorline
 set cursorcolumn
-set hlsearch 
+set hlsearch
 
 " nerd comment
 let g:NERDSpaceDelim = 1
@@ -51,7 +53,7 @@ let g:NERDTreeDirArrowCollapsible = '<'
 
 set pastetoggle=<F10>
 
-" syntax 
+" syntax
 syntax enable
 syntax on
 let g:cpp_class_scope_highlight = 1
@@ -67,7 +69,7 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
-"fold 
+"fold
 set foldmethod=indent
 set foldmethod=syntax
 set nofoldenable
